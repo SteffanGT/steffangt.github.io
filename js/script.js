@@ -20,7 +20,7 @@
 const projects = [
   {
     slug: "rl-racecar",
-    name: "Reinforced learning racecar",
+    name: "rl-racecar",
     active: true,
     title: "RL racecar",
     tags: ["reinforcement learning", "PPO", "self-driving"],
@@ -29,7 +29,7 @@ const projects = [
       { label: "view repo", href: "https://github.com/yourusername/rl-racecar" }
     ],
     viewer: `<iframe title="Mclaren 35M 2021" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen
-      src="https://sketchfab.com/models/5094ae7c57c544e7832fcd9ca39bba2f/embed"></iframe>`,
+      src="https://sketchfab.com/models/5094ae7c57c544e7832fcd9ca39bba2f/embed?autostart=1&transparent=1&ui_theme=dark&ui_infos=0&ui_watermark_link=0&ui_watermark=0&dnt=1"></iframe>`,
     credit: `<a href="https://sketchfab.com/3d-models/mclaren-35m-2021-wwwvecarzcom-5094ae7c57c544e7832fcd9ca39bba2f" target="_blank" rel="noopener">Mclaren 35M 2021</a> by <a href="https://sketchfab.com/heynic" target="_blank" rel="noopener">vecarz</a> on <a href="https://sketchfab.com" target="_blank" rel="noopener">Sketchfab</a>`,
     files: [
       { name: "README.md", size: "2.1 kb", icon: "ti-file-text", preview: "RL racecar\n\nAn agent trained to drive an F1-style car around\nprocedurally generated tracks using PPO." },

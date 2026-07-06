@@ -32,6 +32,39 @@ part-by-part assembly / drive-off animations we talked about, you'll
 need to self-host a `.glb` you have rights to and drive it with
 Three.js — see "Going further" below.
 
+## Light / dark mode
+
+There's a toggle button in the header (`#theme-toggle`, wired up in
+`js/theme.js`). It flips a `data-theme="light"` / `data-theme="dark"`
+attribute on `<html>`, which the CSS variables in `css/style.css` key
+off of, and remembers the choice in `localStorage` so it persists
+between visits. If no choice has been saved yet, it defaults to the
+visitor's OS-level light/dark preference.
+
+## About the Sketchfab embed background and play button
+
+The embed URL now includes a few extra parameters:
+`?autostart=1&transparent=1&ui_theme=dark&ui_infos=0&ui_watermark_link=0&ui_watermark=0`
+
+- `autostart=1` skips the "click to play" overlay
+- `transparent=1` removes the white background so your page's own
+  background shows through instead
+
+**Important caveat:** on Sketchfab, some embed customizations —
+including `autostart` and `transparent` — are tied to whether the
+model's *uploader* (not you) has a Sketchfab PRO account. If the
+model owner is on a free plan, Sketchfab may silently ignore those
+parameters and fall back to the default white background and play
+button, regardless of what you set here. There's nothing to fix on
+your end in that case — it's a limitation of the source model's
+account tier.
+
+If that turns out to be the case and it matters to you, the reliable
+fix is self-hosting the model yourself and rendering it with Three.js
+(see "Going further" below) — full control over background,
+autoplay, and everything else, independent of anyone else's account
+tier.
+
 ## Deploying to GitHub Pages
 
 1. Create a new GitHub repo (or use an existing one).

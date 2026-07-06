@@ -3,37 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Steffan Thomas — Portfolio</title>
+<title>Your Name — Portfolio</title>
 <meta name="description" content="Portfolio of projects, browsed like a file explorer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <link rel="stylesheet" href="css/style.css">
+<script>
+  (function () {
+    var saved = localStorage.getItem("theme");
+    var theme = saved || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
 </head>
 <body>
 
 <header class="site-header">
   <div class="site-header-inner">
-    <span class="logo">SteffanThomas<span class="accent">.</span></span>
+    <span class="logo">yourname<span class="accent">.</span></span>
     <nav>
       <a href="#projects">projects</a>
       <a href="#about">about</a>
       <a href="#contact">contact</a>
+      <button id="theme-toggle" aria-label="Toggle light and dark mode">
+        <i class="ti ti-moon" aria-hidden="true"></i>
+      </button>
     </nav>
   </div>
 </header>
 
 <main>
   <section class="intro">
-    <h1>Hi, I'm Your Steffan Thomas.</h1>
-    <p>I build things and occasionally they work. Browse my projects below.</p>
+    <h1>Hi, I'm Your Name.</h1>
+    <p>I build things and occasionally teach them to drive. Browse my projects below.</p>
   </section>
 
   <section id="projects" class="explorer-section">
     <div class="pf-wrap">
       <div class="pf-titlebar">
         <div class="pf-dot"></div><div class="pf-dot"></div><div class="pf-dot"></div>
-        <div class="pf-url">steffangt.github.io/portfolio</div>
+        <div class="pf-url">yourname.github.io/portfolio</div>
       </div>
       <div class="pf-body">
         <div class="pf-sidebar" id="pf-sidebar">
@@ -55,14 +65,15 @@
 
   <section id="contact" class="contact">
     <h2>Get in touch</h2>
-    <p><a href="mailto:Sgt/8@outlook.com">Sgt.8@outlook.com</a> &middot; <a href="https://github.com/SteffanGT" target="_blank" rel="noopener">GitHub</a> &middot; <a href="https://linkedin.com/in/SteffanThomas" target="_blank" rel="noopener">LinkedIn</a></p>
+    <p><a href="mailto:you@example.com">you@example.com</a> &middot; <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a> &middot; <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn</a></p>
   </section>
 </main>
 
 <footer>
-  <p>Built by Steffan Thomas. 3D models embedded via <a href="https://sketchfab.com" target="_blank" rel="noopener">Sketchfab</a>.</p>
+  <p>Built by Your Name. 3D models embedded via <a href="https://sketchfab.com" target="_blank" rel="noopener">Sketchfab</a>.</p>
 </footer>
 
+<script src="js/theme.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
