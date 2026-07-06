@@ -20,7 +20,7 @@
 const projects = [
   {
     slug: "rl-racecar",
-    name: "rl-racecar",
+    name: "Reinforced learning racecar",
     active: true,
     title: "RL racecar",
     tags: ["reinforcement learning", "PPO", "self-driving"],
