@@ -42,9 +42,11 @@ const projects = [
       { name: "results/lap_times.csv", size: "44 kb", icon: "ti-file", preview: null }
     ]
   },
-  { slug: "synth-sequencer", name: "synth-sequencer", active: false },
-  { slug: "weather-dashboard", name: "weather-dashboard", active: false },
-  { slug: "distributed-cache", name: "distributed-cache", active: false }
+  { slug: "f1-telemetry-dashboard", name: "f1-telemetry-dashboard", active: false },
+  { slug: "gym-tracker", name: "gym-tracker", active: false },
+  { slug: "sign-langauge-translator", name: "sign-language-translator", active: false }
+  { slug: "Kingston", name: "smart-agent-coworker", active: false }
+  { slug: "ai-network-defense", name: "dynamic-ai-network-defense", active: false }
 ];
 
 function renderSidebar() {
