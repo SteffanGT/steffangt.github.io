@@ -3,7 +3,7 @@
   ---------------------------
   Each entry in `projects` is a folder in the sidebar.
   Set `active: true` on the ones you've finished writing up — anything
-  without a `viewer` will show the "still being assembled" empty state,
+  without `active: true` will show the "under construction" panel,
   so you can add placeholder folders for work in progress.
 
   The `viewer` field holds raw HTML for the 3D preview. Right now every
@@ -78,9 +78,16 @@ function render(slug) {
 
   if (!project || !project.active) {
     content.innerHTML = `
-      <div class="pf-empty">
-        <i class="ti ti-folder" aria-hidden="true"></i>
-        <p>This project folder is still being assembled. Check back soon, or browse rl-racecar on the left.</p>
+      <div class="under-construction">
+        <div class="uc-tape uc-tape-top"><span>Under construction</span></div>
+        <div class="uc-icons">
+          <i class="ti ti-traffic-cone uc-cone" aria-hidden="true"></i>
+          <i class="ti ti-alert-triangle uc-sign" aria-hidden="true"></i>
+          <i class="ti ti-barrier-block uc-barrier" aria-hidden="true"></i>
+        </div>
+        <div class="uc-title">Coming soon</div>
+        <p class="uc-sub">This project is still being built. Check back soon, or browse rl-racecar on the left.</p>
+        <div class="uc-tape uc-tape-bottom"><span>Check back soon</span></div>
       </div>`;
     return;
   }
