@@ -1,0 +1,169 @@
+# Portfolio site
+
+A file-explorer-style portfolio: project names on the left, a 3D model
+viewer + description + file list on the right. Plain HTML/CSS/JS, no
+build step required.
+
+## What's in here
+
+```
+index.html          the whole page (header, intro, explorer, about, contact)
+css/style.css        all styling
+js/script.js          project data + interaction logic
+assets/models/        empty — for your own .glb files later (see below)
+```
+
+## About the 3D model
+
+The car in `rl-racecar` is embedded via a **Sketchfab iframe**, not a
+self-hosted file — this is a McLaren model by [vecarz on
+Sketchfab](https://sketchfab.com/heynic), embedded under Sketchfab's
+standard embed terms (attribution link included, as required).
+
+I didn't bundle the raw `.glb` for it, for two reasons:
+- redistributing someone else's 3D model file isn't something to do
+  without checking their license terms directly
+- the Sketchfab embed already works great on GitHub Pages with zero
+  extra hosting, so there's no need to
+
+The embed is genuinely a fine long-term option if you're happy with a
+fixed viewer (drag to orbit, Sketchfab's own UI chrome). If you want the
+part-by-part assembly / drive-off animations we talked about, you'll
+need to self-host a `.glb` you have rights to and drive it with
+Three.js — see "Going further" below.
+
+## Light / dark mode
+
+There's a toggle button in the header (`#theme-toggle`, wired up in
+`js/theme.js`). It flips a `data-theme="light"` / `data-theme="dark"`
+attribute on `<html>`, which the CSS variables in `css/style.css` key
+off of, and remembers the choice in `localStorage` so it persists
+between visits. If no choice has been saved yet, it defaults to the
+visitor's OS-level light/dark preference.
+
+## About the Sketchfab embed background and play button
+
+The embed URL now includes a few extra parameters:
+`?autostart=1&transparent=1&ui_theme=dark&ui_infos=0&ui_watermark_link=0&ui_watermark=0`
+
+- `autostart=1` skips the "click to play" overlay
+- `transparent=1` removes the white background so your page's own
+  background shows through instead
+
+**Important caveat:** on Sketchfab, some embed customizations —
+including `autostart` and `transparent` — are tied to whether the
+model's *uploader* (not you) has a Sketchfab PRO account. If the
+model owner is on a free plan, Sketchfab may silently ignore those
+parameters and fall back to the default white background and play
+button, regardless of what you set here. There's nothing to fix on
+your end in that case — it's a limitation of the source model's
+account tier.
+
+If that turns out to be the case and it matters to you, the reliable
+fix is self-hosting the model yourself and rendering it with Three.js
+(see "Going further" below) — full control over background,
+autoplay, and everything else, independent of anyone else's account
+tier.
+
+## Using a custom domain (e.g. yourname.com instead of *.github.io)
+
+Yes — GitHub Pages custom domains don't have to end in `.github.io`.
+You can point any domain you own at it. Rough steps:
+
+1. **Buy the domain** somewhere (Namecheap, Google Domains, etc. — any registrar works).
+2. **In GitHub:** repo → Settings → Pages → "Custom domain" field → enter
+   `steffthomas.com` (no `www`, no `https://`) → Save. This creates a
+   `CNAME` file in your repo root — don't delete it.
+3. **At your domain registrar's DNS settings**, add these records:
+   - Four **A records** for the apex domain (`steffthomas.com`) pointing at:
+     `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - One **CNAME record** for `www` pointing at `yourusername.github.io`
+     (lets `www.steffthomas.com` work too and redirect to the apex domain)
+4. Wait — DNS changes can take anywhere from a few minutes up to 24 hours
+   to propagate.
+5. Back in repo → Settings → Pages, tick **Enforce HTTPS** once it becomes
+   available (GitHub auto-issues a certificate once DNS is verified —
+   can take up to an hour after DNS resolves correctly).
+
+## Deploying to GitHub Pages
+
+1. Create a new GitHub repo (or use an existing one).
+2. Copy all the files in this folder into the repo root (keep the folder
+   structure — `css/`, `js/`, `assets/` should sit next to `index.html`).
+3. Commit and push.
+4. In the repo: **Settings → Pages → Source**, select the branch (usually
+   `main`) and `/ (root)`, save.
+5. Your site will be live at `https://yourusername.github.io/repo-name/`
+   within a minute or two.
+
+No build step, no `npm install` — it's just static files.
+
+## Editing content
+
+**Important: when you update files on GitHub, make sure every file that
+changed actually gets replaced in the repo** — not just `index.html`.
+This site is split across `index.html`, `css/style.css`, `js/theme.js`,
+and `js/script.js`; if you only re-upload `index.html`, the page will
+reference new HTML (e.g. a new button) but still run the *old*
+CSS/JS files sitting in the repo, which looks like "nothing changed"
+or "it's half-broken." The safest way to update is to drag the
+**entire unzipped folder** into GitHub's Upload files screen at once
+(or use `git push`/GitHub Desktop, which always syncs everything
+correctly) rather than editing single files individually.
+
+Everything project-related lives in the `projects` array at the top of
+`js/script.js`. To add a new project:
+
+```js
+{
+  slug: "my-project",
+  name: "my-project",
+  active: true,
+  title: "My project",
+  tags: ["tag-one", "tag-two"],
+  desc: "A sentence or two about it.",
+  links: [{ label: "view repo", href: "https://github.com/you/repo" }],
+  viewer: `<iframe ...></iframe>`,  // or a <canvas> if self-hosting, see below
+  credit: `optional attribution HTML`,
+  files: [
+    { name: "main.py", size: "3 kb", icon: "ti-file-code", preview: "some code..." }
+  ]
+}
+```
+
+Set `active: false` (or omit `title`/`files`/etc.) on any project you
+haven't written up yet — it'll show as a locked folder with an empty
+state instead of breaking.
+
+## A note on GitHub Pages + large files
+
+If you do start adding your own `.glb` files:
+
+- Keep individual files well under GitHub's 100MB hard limit — ideally a
+  few MB. Compress with [gltf-transform](https://gltf-transform.dev/) or
+  Blender's Draco export option.
+- **Don't use Git LFS** for files that need to load in the browser —
+  GitHub Pages serves the LFS pointer text file instead of the real
+  binary, which silently breaks the model. Just commit compressed
+  `.glb` files normally.
+
+## Going further: self-hosting a model with Three.js
+
+To replace the Sketchfab embed with a model you control (needed for the
+assembly/drive-off animation idea):
+
+1. Put your compressed `.glb` in `assets/models/`.
+2. Add Three.js via CDN in `index.html`, e.g.:
+   ```html
+   <script type="importmap">
+   { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.164.0/build/three.module.js",
+                  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.0/examples/jsm/" } }
+   </script>
+   ```
+3. Swap that project's `viewer` field for a `<canvas id="rl-racecar-canvas"></canvas>`.
+4. In a new module script, load the model with `GLTFLoader`, render it
+   into that canvas, and animate parts in with `AnimationMixer` (if
+   authored in Blender) or a tweening library like GSAP.
+
+Happy to help build that step out in detail once you've got a model
+you're ready to self-host.
