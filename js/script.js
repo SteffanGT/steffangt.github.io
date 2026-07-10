@@ -44,8 +44,8 @@ const projects = [
   },
   { slug: "f1-telemetry-dashboard", name: "f1-telemetry-dashboard", active: false },
   { slug: "gym-tracker", name: "gym-tracker", active: false },
-  { slug: "sign-langauge-translator", name: "sign-language-translator", active: false }
-  { slug: "Kingston", name: "smart-agent-coworker", active: false }
+  { slug: "sign-langauge-translator", name: "sign-language-translator", active: false },
+  { slug: "Kingston", name: "smart-agent-coworker", active: false },
   { slug: "ai-network-defense", name: "dynamic-ai-network-defense", active: false }
 ];
 
