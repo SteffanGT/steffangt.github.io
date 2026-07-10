@@ -26,7 +26,7 @@ const projects = [
     tags: ["reinforcement learning", "PPO", "self-driving"],
     desc: "An agent trained from scratch to drive an F1-style car around procedurally generated circuits, using proximal policy optimization and a reward function shaped around lap time and track position.",
     links: [
-      { label: "view repo", href: "https://github.com/yourusername/rl-racecar" }
+      { label: "view repo", href: "https://github.com/SteffanGT/rl-racecar" }
     ],
     viewer: `<iframe title="Mclaren 35M 2021" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen
       src="https://sketchfab.com/models/5094ae7c57c544e7832fcd9ca39bba2f/embed?autostart=1&transparent=1&ui_theme=dark&ui_infos=0&ui_watermark_link=0&ui_watermark=0&dnt=1"></iframe>`,
@@ -42,7 +42,22 @@ const projects = [
       { name: "results/lap_times.csv", size: "44 kb", icon: "ti-file", preview: null }
     ]
   },
-  { slug: "f1-telemetry-dashboard", name: "f1-telemetry-dashboard", active: false },
+  { 
+    slug: "f1-telemetry-dashboard", 
+    name: "f1-telemetry-dashboard", 
+    active: true,
+    title: "Live F1-telemtry Daashboard",
+    tags: ["API adaptation", "Python", "Live data"],
+    desc: "Display live and replay past races on an F1 telemtry dashboard. Discover race statistics and strategies not shown on common coverage.",
+    links: [{ label: "view repo", href: "https://github.com/SteffanGT/telemetry-dashboard"}],
+    viewer: '<div class="sketchfab-embed-wrapper"> <iframe title="Mercedes F1 Steering Wheel (2021)" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/d3a09ad8f50c4b3a980ab3785c75f6b3/embed?autospin=1&autostart=1&preload=1&transparent=1&ui_hint=0"> </iframe> </div>',
+    credit: '<a href="https://sketchfab.com/3d-models/mercedes-f1-steering-wheel-2021-d3a09ad8f50c4b3a980ab3785c75f6b3" target="_blank" rel="noopener">Mercedes F1 Steering Wheel (2021)</a> by <a href="https://sketchfab.com/wittybacon" target="_blank" rel="noopener">WittyBacon</a> on <a href="https://sketchfab.com" target="_blank" rel="noopener">Sketchfab</a>`,
+    files: [
+       { name: "README.md", size: "2.1 kb", icon: "ti-file-text", preview: "Raceside style telemetry data using OpenF1 free API for data retrieval and organising in such a way that replicates real telemetry dashboards." },
+    ]
+  },
+
+  
   { slug: "gym-tracker", name: "gym-tracker", active: false },
   { slug: "sign-langauge-translator", name: "sign-language-translator", active: false },
   { slug: "Kingston", name: "smart-agent-coworker", active: false },
