@@ -42,20 +42,28 @@ const projects = [
       { name: "results/lap_times.csv", size: "44 kb", icon: "ti-file", preview: null }
     ]
   },
-  { 
-    slug: "f1-telemetry-dashboard", 
-    name: "f1-telemetry-dashboard", 
+  {
+    slug: "f1-telemetry-dashboard",
+    name: "f1-telemetry-dashboard",
     active: true,
-    title: "Live F1-telemtry Daashboard",
-    tags: ["API adaptation", "Python", "Live data"],
-    desc: "Display live and replay past races on an F1 telemtry dashboard. Discover race statistics and strategies not shown on common coverage.",
-    links: [{ label: "view repo", href: "https://github.com/SteffanGT/telemetry-dashboard"}],
-    viewer: '<div class="sketchfab-embed-wrapper"> <iframe title="Mercedes F1 Steering Wheel (2021)" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/d3a09ad8f50c4b3a980ab3785c75f6b3/embed?autospin=1&autostart=1&preload=1&transparent=1&ui_hint=0"> </iframe> </div>',
-    credit: '<a href="https://sketchfab.com/3d-models/mercedes-f1-steering-wheel-2021-d3a09ad8f50c4b3a980ab3785c75f6b3" target="_blank" rel="noopener">Mercedes F1 Steering Wheel (2021)</a> by <a href="https://sketchfab.com/wittybacon" target="_blank" rel="noopener">WittyBacon</a> on <a href="https://sketchfab.com" target="_blank" rel="noopener">Sketchfab</a>`,
+    title: "F1 Telemetry Dashboard",
+    tags: ["data visualization", "FastF1", "Python"],
+    desc: "A dashboard for exploring real Formula 1 timing and telemetry data — lap times, tyre strategy, throttle/brake traces, and sector comparisons pulled from the FastF1 API and rendered as interactive charts.",
+    links: [
+      { label: "view repo", href: "https://github.com/yourusername/f1-telemetry-dashboard" }
+    ],
+    viewer: `<iframe title="Mercedes F1 Steering Wheel (2021)" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen
+      src="https://sketchfab.com/models/d3a09ad8f50c4b3a980ab3785c75f6b3/embed?autospin=1&autostart=1&preload=1&transparent=1&ui_theme=dark&ui_infos=0&ui_watermark_link=0&ui_watermark=0&dnt=1"></iframe>`,
+    credit: `<a href="https://sketchfab.com/3d-models/mercedes-f1-steering-wheel-2021-d3a09ad8f50c4b3a980ab3785c75f6b3" target="_blank" rel="noopener">Mercedes F1 Steering Wheel (2021)</a> by <a href="https://sketchfab.com/wittybacon" target="_blank" rel="noopener">Wittybacon</a> on <a href="https://sketchfab.com" target="_blank" rel="noopener">Sketchfab</a>`,
     files: [
-       { name: "README.md", size: "2.1 kb", icon: "ti-file-text", preview: "Raceside style telemetry data using OpenF1 free API for data retrieval and organising in such a way that replicates real telemetry dashboards." },
+      { name: "README.md", size: "1.8 kb", icon: "ti-file-text", preview: "F1 Telemetry Dashboard\n\nExplore lap times, tyre strategy and telemetry\ntraces from real F1 sessions using FastF1." },
+      { name: "fetch_session.py", size: "3.2 kb", icon: "ti-file-code", preview: "import fastf1\n\nsession = fastf1.get_session(2024, 'Monza', 'R')\nsession.load()\nlaps = session.laps" },
+      { name: "dashboard.py", size: "5.6 kb", icon: "ti-file-code", preview: null },
+      { name: "charts/lap_times.py", size: "2.4 kb", icon: "ti-file-code", preview: null },
+      { name: "charts/tyre_strategy.py", size: "2.9 kb", icon: "ti-file-code", preview: null },
+      { name: "data/monza_2024_race.csv", size: "1.1 mb", icon: "ti-file", preview: null }
     ]
-  },
+   },
 
   
   { slug: "gym-tracker", name: "gym-tracker", active: false },
